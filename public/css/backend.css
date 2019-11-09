@@ -1,0 +1,12 @@
+#cke_1_top{
+    background: #fff !important;
+    border-bottom: 1px solid #ccc;
+}
+.alert-message{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
+.btn-back{
+    margin-left: 15px;
+}
