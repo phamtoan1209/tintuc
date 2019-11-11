@@ -14,18 +14,20 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>STT</th>
                                     <th>Tên thông tin</th>
                                     <th>Giá trị</th>
                                     <th>Hành động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $i=0; ?>
                                 @foreach($datas as $item)
+                                    <?php $i++; ?>
                                     @if($item->key == 'account_mail' && $currentAdmin->username != 'admin'):
                                     @else
                                         <tr class='text-success'>
-                                            <td>{{$item->id}}</td>
+                                            <td>{{$i}}</td>
                                             <td>{{$item->name}}</td>
                                             @if($item->key != 'logo' && $item->key != 'favicon')
                                                 <td>{{$item->value}}</td>

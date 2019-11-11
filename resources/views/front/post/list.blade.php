@@ -1,37 +1,42 @@
 @extends('front._partials.master')
 @section('content')
-    {!! \app\Helpers\Widgets::renderBreadcumb($cate,'post') !!}
-    {!! \app\Helpers\Widgets::renderNavTab($categoryPost,$cate) !!}
-    <main>
-        <div class="product-list">
-            <div class="container">
+    <article>
+        <section>
+            <div class="container container-duan">
                 <div class="row">
-                    <div class="col-lg-9 col-md-8 col-sm-12 col-12 order-sm-1 order-1">
-                        <div class="row">
-                           @if(isset($posts) && !empty($posts) > 0)
-                               {!! \app\Helpers\Widgets::renderItemPost($posts) !!}
-                           @endif
-                        </div>
-                        <div> {{ isset($posts) ? $posts->links() : ''}}</div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-12 col-12 order-2">
-                        <div class="sort-product">
-                            <p class="font-weight-bold">Danh mục tin tức</p>
-                            <ul>
-                                @if(isset($categoryPost) && !empty($categoryPost))
-                                    @foreach($categoryPost as $item)
-                                        <li class="active">
-                                            <a href="{{url('tin-tuc/danh-muc/'.$item['slug'])}}">
-                                                <i class="fa fa-newspaper-o" aria-hidden="true"></i> {{$item['name']}}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                @endif
-                            </ul>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 archive-main-content archive-main-content-duan">
+
+                        <div id="archive-main-content-duan">
+                            {!! view('front.element._breadcumb')->with(['cate' => $cate,'type' => 'post']) !!}
+                            <div class="clear" style="margin-top: 15px;">
+                                <h1 class="entry-title cat-title" style="float: left; margin-top: 0px;">
+                                    <span> Danh sách tin tức </span>
+                                </h1>
+                                <form action="{{route('allPost')}}" method="GET" class="form form-horizontal">
+                                    <div class="row form-group">
+                                        <p class="pull-right col-xs-12 col-sm-3 col-md-2">
+                                            <input name="name" value="{{isset($filter) && isset($filter['name']) ? $filter['name'] : ''}}" type="text" class="form-control" placeholder="Tìm kiếm tin tức">
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="clear"></div>
+                            @if(isset($filter) && isset($filter['name']) && $filter['name'] != '')
+                                <p class="form-group">Kết của tìm kiếm cụm từ: <b>"{{$filter['name']}}</b>"</p>
+                            @endif
+                            @if(isset($posts))
+                                @foreach($posts as $post)
+                                    {!! view('front.element._item_post')->with(['data' => $post]) !!}
+                                @endforeach
+                            @endif
+                            <div class="col-md-12">
+                                {!! count($posts) > 0 ? $posts->links() : 'Tin tức đang được cập nhật. Vui lòng quay trở lại sau' !!}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </section>
+        @include('front.element._why_me')
+    </article>
 @stop

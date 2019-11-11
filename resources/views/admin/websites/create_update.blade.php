@@ -16,7 +16,7 @@
                                 <input type="hidden" name="key" value="{{$item->key}}">
                                 <label>{{$item->name}}:</label>
                                 @if($item->key != 'logo' && $item->key != 'favicon')
-                                    {!! Form::text('value', old( 'value',isset($item) ? $item->value : ''), ['class' => 'form-control','placeholder'=>"Value"]) !!}
+                                    {!! Form::textarea('value', old( 'value',isset($item) ? $item->value : ''), ['class' => 'form-control','placeholder'=>"Mô tả", 'rows' => 4]) !!}
                                     {!! $errors->first('value') ? '<p class="text-danger">'. $errors->first('value') .'</p>' : ''!!}
                                 @else
                                     <input type="file" name="value" required style="margin-bottom: 20px;" accept="image/*">

@@ -3,6 +3,7 @@
 use App\Model\Slide;
 use App\Model\Information;
 use App\Model\Category;
+use App\Model\Intro;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +32,7 @@ Route::get('/tin-tuc/danh-muc/{slug}', 'Front\FrontController@allPost')->name('a
 Route::get('/tin-tuc/{slug}', 'Front\FrontController@detailPost')->name('detailPost');
 
 Route::post('/add-contact', 'Front\FrontController@addContact')->name('addContact');
+Route::get('/{slug}.html', 'Front\FrontController@getPage')->name('getPage');
 
 Auth::routes();
 
@@ -38,9 +40,10 @@ Route::any('/admin/login','Admin\AuthController@login')->name('adminLogin');
 
 View::share([
     'slides' => Slide::getSlideHome(),
-    'categorys' => Category::getTreeCategoryHome('product',false),
+    'categorys' => Category::getTreeCategoryHome('product',false,true),
     'website' => Information::getInfor(),
-    'categoryPostHot' => Category::getParentCategory('post',true,true)
+    'categoryPostHot' => Category::getParentCategory('post',false,true),
+    'pagestatic' => Intro::getAllPage()
 ]);
 
 Route::group(['prefix'=>'admin', 'middleware'=>'admin'],function (){

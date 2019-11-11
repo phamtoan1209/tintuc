@@ -15,7 +15,7 @@ class Post extends Model
 
     public $table = 'posts';
 
-    public $fillable = ['id','admin_id','thumb','name','slug','content','status','category_id','views','created_at','description','large','title_seo','description_seo','keyword_seo','hot'];
+    public $fillable = ['id','admin_id','thumb','name','slug','content','status','category_id','views','created_at','description','large','title_seo','description_seo','keyword_seo'];
 
     public function Category(){
         return $this->hasOne(Category::class,'id','category_id');

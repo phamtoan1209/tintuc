@@ -18,7 +18,7 @@
                                     <div class="col-md-8">
                                         <label for="exampleInputFile">Ảnh sản phẩm</label>
                                         <input type="file" name="thumb" id="thumb" accept="image/*"><br>
-                                        <p>Lưu ý: Chọn ảnh vuông để hiển thị đẹp nhất</p>
+                                        <p class="text-danger">Lưu ý: Chọn ảnh vuông để hiển thị đẹp nhất</p>
                                     </div>
                                     <div class="col-md-4">
                                         <?php if(isset($item) && $item->thumb != ''): ?>

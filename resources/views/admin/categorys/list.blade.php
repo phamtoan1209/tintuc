@@ -8,6 +8,7 @@
                     <div class="box-header">
                         <?= view('admin._partials._breadcumb')?>
                         <?= view('admin._partials._btn_add')?>
+                        <br><br>
                         <div>
                             <form action="{{route($actionList)}}" method="get" class="form-delete">
                                 <div class="row">

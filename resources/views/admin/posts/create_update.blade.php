@@ -16,6 +16,7 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">Ảnh sản phẩm</label>
                                 <input type="file" name="thumb" id="thumb" accept="image/*"><br>
+                                <p class="text-danger">Lưu ý: Chọn ảnh chữ nhật để hiển thị đẹp nhất</p>
                                 <?php if(isset($item) && $item->thumb != ''): ?>
                                 <img src="{{asset($item->thumb)}}" alt="" width="200">
                                 <?php endif; ?>

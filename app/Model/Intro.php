@@ -10,4 +10,8 @@ class Intro extends Model
 
     protected $fillable = ['id','content','name','link'];
 
+    public static function getAllPage(){
+        return self::all()->pluck('name','link')->toArray();
+    }
+
 }

@@ -56,6 +56,9 @@ class Product extends Model
         if(isset($filter['name']) && $filter['name'] != ''){
             $query->where('name','like','%'.$filter['name'].'%');
         }
+        if(isset($filter['hot']) && $filter['hot'] != ''){
+            $query->where('hot',$filter['hot']);
+        }
         if(isset($filter['category_id']) && $filter['category_id'] != ''){
             if(is_array($filter['category_id'])){
                 $query->whereIn('category_id',$filter['category_id']);

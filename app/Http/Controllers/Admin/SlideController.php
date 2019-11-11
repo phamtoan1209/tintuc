@@ -54,7 +54,7 @@ class SlideController extends BaseController
         }
         if($request->hasFile('thumb')){
             $file = $request->file('thumb');
-            $data['thumb'] = $this->uploadFile($file,$this->pathUpload,true,500,200);
+            $data['thumb'] = $this->uploadFile($file,$this->pathUpload,true,1467,500);
         }
         $data['status'] = 0;
         if($request->has('status')){

@@ -1,58 +1,46 @@
 <header>
-    <div class="container">
-        <div class="row site-branding">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-12 site-logo">
-                <h1><a href="{{route('home')}}" rel="home">
-                        <img style="width: 160px;height: 90px;" class="img-fluid" src="{{asset(isset($website['logo']) ? $website['logo'] : '')}}" alt="Bridal">
-                    </a></h1>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-12 col-12 info-header">
-                <ul>
-                    <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{isset($website['address']) ? $website['address'] : ''}}</li>
-                    <li><i class="fa fa-phone" aria-hidden="true"></i>{{isset($website['phone']) ? $website['phone'] : ''}}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div id="site-nav">
-        <div class="container">
-            <nav class="header" id="myHeader">
-                <div class="menu-toggle">
-                    <button type="button" id="menu-btn">
-                        <div style="float: left;">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </div>
-                        <h3>Menu</h3>
+    <div class="ib-menu">
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="{{isset($website['background']) && $website['background'] != '' ? 'background:'.$website['background'].';' : ''}} border:none;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
+                    <a class="navbar-brand" href="{{url('/')}}"><img class="img-responsive logo-desktop" src="{{asset(isset($website['logo']) ? $website['logo'] : '')}}" alt="" /></a>
                 </div>
-                <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
-                    <li>
-                        <a href="{{route('home')}}">
-                            <span class="title">Trang chủ</span>
-                        </a>
-                    </li>
-                    @if(isset($categorys) && count($categorys) > 0)
-                        @foreach($categorys as $item)
-                            <li>
-                                <a href="{{url('san-pham/danh-muc/'.$item['slug'])}}">
-                                    <span class="title">{{$item['name']}}</span>
-                                </a>
-                                @if(isset($item['childs']) && count($item['childs']) > 0)
-                                    <ul>
-                                        @foreach($item['childs'] as $itemChild)
-                                            <li>
-                                                <a href="{{url('san-pham/danh-muc/'.$itemChild['slug'])}}">{{$itemChild['name']}}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                <div class="navbar-collapse collapse" style="height: 1px;">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Sản phẩm <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                @if(isset($categorys))
+                                    @foreach($categorys as $item)
+                                        <li><a href="{{url('/san-pham/danh-muc/'.$item['slug'])}}"> {{$item['name']}}</a></li>
+                                    @endforeach
                                 @endif
-                            </li>
-                        @endforeach
-                    @endif
-                </ul>
-            </nav>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Thiết kế <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                @if(isset($categoryPostHot))
+                                    @foreach($categoryPostHot as $item)
+                                        <li><a href="{{url('/tin-tuc/danh-muc/'.$item['slug'])}}"> {{$item['name']}}</a></li>
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </li>
+                        @if(isset($pagestatic))
+                            @foreach($pagestatic as $key =>$item)
+                                <li><a href="{{url($key.'.html')}}"> {{$item}}</a></li>
+                            @endforeach
+                        @endif
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </header>

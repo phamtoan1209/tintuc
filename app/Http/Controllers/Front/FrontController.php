@@ -20,34 +20,24 @@ class FrontController extends BaseController
     protected $Product;
     protected $Post;
     protected $Category;
+    protected $Intro;
 
-    public function __construct(Product $product,Post $post,Category $category)
+    public function __construct(Product $product,Post $post,Category $category,Intro $intro)
     {
         parent::__construct();
         $this->Product = $product;
         $this->Post = $post;
         $this->Category = $category;
+        $this->Intro = $intro;
     }
 
     public function index(){
-        $data['menu'] = 'home';
-        $cateProductHot = Category::getParentCategory('product',true,true);
-        $listCates = [];
-        if(!empty($cateProductHot)){
-            foreach ($cateProductHot as $item){
-                $filter['category_id'] =  Category::getAllIdsRelation($item['id']);
-                $item['products'] = $this->Product->getListForFront(true,$filter,9);
-                $listCates[] = $item;
-            }
-        }
-        $data['home'] = true;
-        $data['categoryProductHot'] = $cateProductHot;
-        $data['listCates'] = $listCates;
+        $data['products'] = $this->Product->getListForFront(true,['hot' => 1],12);
+        $data['posts'] = $this->Post->getListForFront(true,[],12);
         return view('front.index',$data);
     }
 
     public function allProduct(Request $request,$slug = null){
-        $data['menu'] = 'product';
         $filter = $request->all();
         $cate = null;
         if($slug != null){
@@ -56,12 +46,16 @@ class FrontController extends BaseController
                 $this->renderSeo($cate);
                 $filter['category_id'] = Category::getAllIdsRelation($cate->id);
             }
+        }else{
+            view()->share(['arrSeo' => [
+                'title_seo' => 'Danh sách sản phẩm',
+                'description_seo' => 'Danh sách sản phẩm',
+                'keyword_seo' => 'Danh sách sản phẩm',
+            ]]);
         }
-        $data['cate'] = $cate;
         $data['filter'] = $filter;
-        $data['flagLinks'] = 1;
+        $data['cate'] = $cate;
         $data['products'] = $this->Product->getListForFront(true,$filter,16);
-        $data['categoryProduct'] = Category::getTreeCategoryHome('product');
         return view('front.product.list',$data);
     }
 
@@ -81,7 +75,6 @@ class FrontController extends BaseController
     }
 
     public function allPost(Request $request,$slug = null){
-        $data['menu'] = 'post';
         $filter = $request->all();
         $cate = null;
         if($slug != null){
@@ -90,11 +83,16 @@ class FrontController extends BaseController
                 $this->renderSeo($cate);
                 $filter['category_id'] = Category::getAllIdsRelation($cate->id);
             }
+        }else{
+            view()->share(['arrSeo' => [
+                'title_seo' => 'Danh sách tin tức',
+                'description_seo' => 'Danh sách tin tức',
+                'keyword_seo' => 'Danh sách tin tức',
+            ]]);
         }
         $data['cate'] = $cate;
         $data['filter'] = $filter;
-        $data['posts'] = $this->Post->getListForFront(true,$filter,18);
-        $data['categoryPost'] = Category::getTreeCategoryHome('post');
+        $data['posts'] = $this->Post->getListForFront(true,$filter,12);
         return view('front.post.list',$data);
     }
 
@@ -119,21 +117,26 @@ class FrontController extends BaseController
     }
 
     public function addContact(Request $request){
-
-        $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
-            'email' => 'required|email',
-            'content' => 'required',
-        ]);
-        $contact = new Contact($request->only('name','phone','email','content'));
-        $contact->save();
-        $account_mail = Information::where('key','account_mail')->first();
-        $mailTo = $account_mail->value != '' ? $account_mail->value : 'phamtoan12091994@gmail.com';
-        Mail::send('front.mail.email', array('name'=>$contact->name,'phone' => $contact->phone,'email'=>$contact->email, 'content'=>$contact->content), function($message) use ($mailTo){
-            $message->to($mailTo, 'Quản trị')->subject('Người dùng liên hệ!');
-        });
-
+        $params = $request->post();
+        if(isset($params['name']) && isset($params['email']) && isset($params['phone'])){
+            $contact = new Contact($request->only('name','phone','email','content'));
+            $contact->save();
+//            $account_mail = Information::where('key','account_mail')->first();
+//            $mailTo = $account_mail->value != '' ? $account_mail->value : 'phamtoan12091994@gmail.com';
+//            Mail::send('front.mail.email', array('name'=>$contact->name,'phone' => $contact->phone,'email'=>$contact->email, 'content'=>$contact->content), function($message) use ($mailTo){
+//                $message->to($mailTo, 'Quản trị')->subject('Người dùng liên hệ!');
+//            });
+        }else if(isset($params['text'])){
+            $str = 'Không xác định';
+            $contact = new Contact();
+            $fieldSet = strpos($params['text'],'@') != false ? 'email' : 'phone';
+            $fieldLeft = $fieldSet == 'email' ? 'phone' : 'email';
+            $contact->{$fieldSet} = $params['text'];
+            $contact->{$fieldLeft} = $str;
+            $contact->name = $str;
+            $contact->content = $str;
+            $contact->save();
+        }
         return redirect()->back()->with([
             'alert_message' => Config::get('constants.CONTACT_SUCCESS'),
         ]);
@@ -145,6 +148,14 @@ class FrontController extends BaseController
         return view('front.intro',compact('intro','menu'));
     }
 
-
+    public function getPage($slug = null){
+        if($slug != null){
+            $page = $this->Intro->where('link',$slug)->first();
+            if($page){
+                return view('front.single_page',['page' => $page]);
+            }
+        }
+        return view('errors.404');
+    }
 
 }

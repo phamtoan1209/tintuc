@@ -36,7 +36,7 @@
                                     <th>ID</th>
                                     <th>Họ tên</th>
                                     <th>Email</th>
-                                    <th>Số điện thọai</th>
+                                    <th>Số điện thoại</th>
                                     <th>Trạng thái</th>
                                     <th>Hành động</th>
                                 </tr>
