@@ -60,6 +60,9 @@ class Category extends Model
         return $data;
     }
 
+    public static function getCategoryAdmin($type = self::TYPE_PRODUCT){
+        return static::select(self::$selectArr)->where('type',$type)->pluck('name','id');
+    }
 
     public static function renderTreeCategory($data){
         $result = [];
@@ -67,7 +70,7 @@ class Category extends Model
             $item['childs'] = [];
             $categorys = static::select(self::$selectArr)->where('parent_id',$item['id'])->get()->toArray();
             if(!empty($categorys)){
-                $item['childs'] = $categorys;
+                $item['childs'] = self::renderTreeCategory($categorys);
             }
             $result[] = $item;
         }

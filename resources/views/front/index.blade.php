@@ -4,13 +4,36 @@
     <article>
         {!! view('front.element._slide') !!}
         <section>
+            <div id="home-why-chooise-wrap-title">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div id="home-why-chooise-wrap-top">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-why-chooise-wrap-top">
+                                    <div class="vc_text_separator wpb_content_element full home-info-new-title">
+                                        <div class="separator_wrapper">
+                                            <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span><b>TUẤN HƯNG PHÁT - DẪN ĐẦU PHONG CÁCH HIỆN ĐẠI</b></span></div>
+                                        </div>
+                                        <div class="separator_line" style="background-color:#d7d7d7;"></div>
+                                    </div>
+                                    <p>
+                                        {{isset($website['intro_company']) ? $website['intro_company'] : ''}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
             <div id="home-info-wrap-title">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
                             <div class="vc_text_separator wpb_content_element full home-info-new-title">
                                 <div class="separator_wrapper">
-                                    <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span>NAME COMPANY - SẢN PHẨM PHONG CÁCH HIỆN ĐẠI</span></div>
+                                    <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span>TUẤN HƯNG PHÁT - SẢN PHẨM PHONG CÁCH HIỆN ĐẠI</span></div>
                                 </div>
                                 <div class="separator_line" style="background-color:#d7d7d7;"></div>
                             </div>
@@ -63,13 +86,6 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div id="home-design-tabs" class="clearfix prd-tab">
-                                <ul class="nav nav-tabs">
-                                    @if(isset($categoryPostHot))
-                                        @foreach($categoryPostHot as $item)
-                                            <li ><a href="{{url('/tin-tuc/danh-muc/'.$item['slug'])}}">{{$item['name']}}</a></li>
-                                        @endforeach
-                                    @endif
-                                </ul>
                                 <ul class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="page-tab1">
                                         <div class="slider multiple-items ">
@@ -95,6 +111,5 @@
             </div>
         </section>
         @include('front.element._why_me')
-        @include('front.element._form_contact')
     </article>
 @stop

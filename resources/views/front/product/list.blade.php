@@ -8,8 +8,11 @@
                         {!! view('front.element._breadcumb')->with(['cate' => $cate,'type' => 'product']) !!}
                         <div class="clear" style="margin-top: 15px;">
                             <h1 class="entry-title cat-title" style="float: left; margin-top: 0px;">
-                                <span> Danh sách sản phẩm </span>
+                                <span> <?=$cate != null ? $cate->name : 'Danh sách sản phẩm'?> </span>
                             </h1>
+                            <p class="pull-left" style="padding: 0px 15px;">
+                                <?=$cate != null ? $cate->description : ''?>
+                            </p>
                             <form action="{{route('allProduct')}}" method="GET" class="form form-horizontal">
                                 <div class="row form-group">
                                     <p class="pull-right col-xs-12 col-sm-3 col-md-2">

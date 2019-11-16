@@ -49,8 +49,8 @@ class CategoryController extends BaseController
      */
     public function create(Request $request, $id = null){
         if($request->isMethod('get')){
-            $data['parentPost'] = Category::getParentCategory('post',false,false);
-            $data['parentProduct'] = Category::getParentCategory('product',false,false);
+            $data['parentPost'] = Category::getCategoryAdmin(Category::TYPE_POST);
+            $data['parentProduct'] = Category::getCategoryAdmin(Category::TYPE_PRODUCT);
             if($id){
                 $data['item'] = $this->Model->findOrFail($id);
             }

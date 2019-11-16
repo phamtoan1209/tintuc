@@ -7,7 +7,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-why-chooise-wrap-top">
                             <div class="vc_text_separator wpb_content_element full home-info-new-title">
                                 <div class="separator_wrapper">
-                                    <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span><b>TẠI SAO CHỌN NAME COMPANY?</b></span></div>
+                                    <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span><b>TẠI SAO CHỌN TUẤN HƯNG PHÁT?</b></span></div>
                                 </div>
                                 <div class="separator_line" style="background-color:#d7d7d7;"></div>
                             </div>

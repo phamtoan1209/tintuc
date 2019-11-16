@@ -11,11 +11,11 @@
                         <div class="block-img-info-product">
                             <div class="block-img-left">
                                 <img class="img-responsive" id="zoom_03" src="{{asset($product->thumb)}}" data-zoom-image="{{asset($product->large)}}" />
-                                <div id="gallery_01" class="slider-s">
+                                <div id="gallery_01" class="slider-s" style="margin-top:30px;">
                                     <a href="#" data-image="{{asset($product->large)}}" data-zoom-image="{{asset($product->large)}}"><img id="zoom_03" src="{{asset($product->large)}}" /> </a>
                                     @if(!empty($product->images))
                                         @foreach($product->images as $image)
-                                            <a href="#" data-image="{{asset($image->large)}}" data-zoom-image="{{asset($image->large)}}"><img id="zoom_03" src="{{asset($image->large)}}" /> </a>
+                                            <a href="#" data-image="{{asset($image->large)}}" data-zoom-image="{{asset($image->large)}}"><img id="zoom_03" src="{{asset($image->thumb)}}" /> </a>
                                         @endforeach
                                     @endif
                                 </div>
@@ -124,15 +124,7 @@
             focusOnSelect: true,
             responsive: [{
                 breakpoint: 768,
-                settings: {
-                    vertical: false,
-                    verticalSwiping: false,
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    centerPadding: '10px',
-                    centerMode: true,
-                    focusOnSelect: true,
-                }
+                settings: "unslick"
             }]
         });
     </script>
