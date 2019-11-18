@@ -31,7 +31,7 @@ class WebsiteController extends BaseController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request){
-        $datas = $this->Model->get();
+        $datas = $this->Model->paginate(1000);
 //        dd($datas);
         return view($this->list,compact('datas'));
     }

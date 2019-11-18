@@ -12,7 +12,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 home-why-chooise-wrap-top">
                                     <div class="vc_text_separator wpb_content_element full home-info-new-title">
                                         <div class="separator_wrapper">
-                                            <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span><b>TUẤN HƯNG PHÁT - DẪN ĐẦU PHONG CÁCH HIỆN ĐẠI</b></span></div>
+                                            <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span><b>{{isset($website['label_one']) ? $website['label_one'] : ''}}</b></span></div>
                                         </div>
                                         <div class="separator_line" style="background-color:#d7d7d7;"></div>
                                     </div>
@@ -33,7 +33,7 @@
                         <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
                             <div class="vc_text_separator wpb_content_element full home-info-new-title">
                                 <div class="separator_wrapper">
-                                    <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span>TUẤN HƯNG PHÁT - SẢN PHẨM PHONG CÁCH HIỆN ĐẠI</span></div>
+                                    <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span>{{isset($website['label_two']) ? $website['label_two'] : ''}}</span></div>
                                 </div>
                                 <div class="separator_line" style="background-color:#d7d7d7;"></div>
                             </div>
@@ -71,7 +71,7 @@
                         <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
                             <div class="vc_text_separator wpb_content_element full home-info-new-title">
                                 <div class="separator_wrapper">
-                                    <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span> THIẾT KẾ PHONG CÁCH HIỆN ĐẠI</span></div>
+                                    <div class="separator_content" style="border-color:#d7d7d7; color:#393939;"> <span> {{isset($website['label_three']) ? $website['label_three'] : ''}}</span></div>
                                 </div>
                                 <div class="separator_line" style="background-color:#d7d7d7;"></div>
                             </div>

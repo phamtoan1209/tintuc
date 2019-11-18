@@ -7,6 +7,6 @@
 @endif
 <tr>
     <td colspan="20">
-        {{!$datas ? $datas->links() : '' }}
+        {{!empty($datas) ? $datas->links() : '' }}
     </td>
 </tr>

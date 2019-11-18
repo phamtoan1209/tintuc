@@ -79,6 +79,10 @@
                                 {!! $errors->first('hot') ? '<p class="text-danger">'. $errors->first('hot') .'</p>' : ''!!}
                             </div>
                            {!! \app\Helpers\Widgets::getFormSeo(isset($item) ? $item : null) !!}
+                            <div class="form-group">
+                                <label>Bài viết danh mục</label>
+                                {!! Form::textarea('content', old( 'content',isset($item) ? $item->content : ''), ['class' => 'form-control','id'=>'editor1','rows'=>'25','placeholder'=>"Bài viết danh mục"]) !!}
+                            </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary btn-flat">Xác nhận</button>
@@ -97,6 +101,7 @@
 @section('script')
     <!-- Select2 -->
     <script src="{{ asset('backend/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('backend/bower_components/ckeditor/ckeditor.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('.select2').select2();
@@ -117,6 +122,17 @@
                     $('.parent-product').find('select').removeAttr('disabled');
                     $('.parent-post').find('select').attr('disabled','disabled');
                 }
+            });
+            CKEDITOR.replace('editor1',{
+                uiColor : '#57B900',
+                language : 'vi',
+                height : '500',
+                filebrowserBrowseUrl: '{{ asset('backend/plugins/ckfinder/ckfinder.html') }}',
+                filebrowserImageBrowseUrl: '{{ asset('backend/plugins/ckfinder/ckfinder.html?type=Images') }}',
+                filebrowserFlashBrowseUrl: '{{ asset('backend/plugins/ckfinder/ckfinder.html?type=Flash') }}',
+                filebrowserUploadUrl: '{{ asset('backend/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+                filebrowserImageUploadUrl: '{{ asset('backend/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+                filebrowserFlashUploadUrl: '{{ asset('backend/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
             });
         });
     </script>

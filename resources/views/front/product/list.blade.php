@@ -44,6 +44,13 @@
                 </div>
             </div>
         </section>
+        <section>
+            <div class="container container-sanpham">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bai-viet">
+                    {!! $cate != null ?  $cate->content : '' !!}
+                </div>
+            </div>
+        </section>
         @include('front.element._why_me')
     </article>
 @stop

@@ -60,7 +60,7 @@ class CategoryController extends BaseController
             'name' => 'required|unique:'.$this->lastPrefix. ($id ? ",id,$id" : ''),
             'type' => 'required'
         ]);
-        $data = $request->only('name','type','parent_id','description','hot','thumb','title_seo','description_seo','keyword_seo');
+        $data = $request->only('name','type','parent_id','description','hot','content','thumb','title_seo','description_seo','keyword_seo');
         if($request->hasFile('thumb')){
             $file = $request->file('thumb');
             $data['large'] = $this->uploadFile($file,$this->pathUpload,true, 300,300);

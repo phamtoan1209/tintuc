@@ -14,9 +14,9 @@ class Category extends Model
 
     public $table = 'categorys';
 
-    public $fillable = ['id','name','slug','type','parent_id','description','hot','thumb','large','title_seo','description_seo','keyword_seo'];
+    public $fillable = ['id','name','slug','type','parent_id','description','content','hot','thumb','large','title_seo','description_seo','keyword_seo'];
 
-    public static $selectArr = ['id','name','slug','type','parent_id','description','hot','thumb','large','title_seo','description_seo','keyword_seo'];
+    public static $selectArr = ['id','name','slug','type','parent_id','description','content','hot','thumb','large','title_seo','description_seo','keyword_seo'];
 
     public function getList($filter = [],$limit = self::PAGE_ITEM){
         $query = $this->select(['*'])->with('parent');
