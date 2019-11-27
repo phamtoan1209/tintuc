@@ -42,6 +42,7 @@
                         <li><a href="{{url('/lien-he.html')}}"> Liên hệ</a></li>
                     </ul>
                 </div>
+                </div>
             </div>
         </div>
     </div>

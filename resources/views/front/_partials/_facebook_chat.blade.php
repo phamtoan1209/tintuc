@@ -1,6 +1,6 @@
 <div class="fb-customerchat"
      attribution=setup_tool
-     page_id="327319838085825"
+     page_id="100177834781513"
      theme_color="#fa3c4c"
      logged_in_greeting="Xin chào, bạn muốn giúp đỡ?"
      logged_out_greeting="Xin chào, bạn muốn giúp đỡ?">
