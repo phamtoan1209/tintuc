@@ -111,6 +111,29 @@ class FrontController extends BaseController
         return view('errors.404');
     }
 
+    public function allCategory(Request $request,$slug = null,$slugsub = null,$slugsub2 = null){
+        $slug = isset($slug) && $slug != '' ? $slug : '';
+        $slug = isset($slugsub) && $slugsub != '' ? $slugsub : $slug;
+        $slug = isset($slugsub2) && $slugsub2 != '' ? $slugsub2 : $slug;
+        if($slug != ''){
+            $cate = $this->Category->with('parent')->where('slug',$slug)->first();
+            if($cate){
+                $this->renderSeo($cate);
+                $filter['category_id'] = Category::getAllIdsRelation($cate->id);
+                $data['filter'] = $filter;
+                $data['cate'] = $cate;
+                if($cate->type == Category::TYPE_PRODUCT){
+                    $data['products'] = $this->Product->getListForFront(true,$filter,16);
+                    return view('front.product.list',$data);
+                }
+                $data['posts'] = $this->Post->getListForFront(true,$filter,12);
+                return view('front.post.list',$data);
+            }
+            return redirect(route('errorPage'));
+        }
+        return redirect(route('errorPage'));
+    }
+
     public function contact(Request $request){
         $menu = 'contact';
         return view('front.contact',compact('menu'));
@@ -155,6 +178,10 @@ class FrontController extends BaseController
                 return view('front.single_page',['page' => $page]);
             }
         }
+        return view('errors.404');
+    }
+
+    public function errorPage(){
         return view('errors.404');
     }
 

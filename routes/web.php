@@ -23,16 +23,15 @@ Route::get('/', 'Front\FrontController@index')->name('home');
 
 //product page
 Route::get('/san-pham', 'Front\FrontController@allProduct')->name('allProduct');
-Route::get('/san-pham/danh-muc/{slug}', 'Front\FrontController@allProduct')->name('allCategoryProduct');
 Route::get('/san-pham/{slug}', 'Front\FrontController@detailProduct')->name('detailProduct');
 
 // post page
 Route::get('/tin-tuc', 'Front\FrontController@allPost')->name('allPost');
-Route::get('/tin-tuc/danh-muc/{slug}', 'Front\FrontController@allPost')->name('allCategoryPost');
 Route::get('/tin-tuc/{slug}', 'Front\FrontController@detailPost')->name('detailPost');
 
 Route::post('/add-contact', 'Front\FrontController@addContact')->name('addContact');
 Route::get('/{slug}.html', 'Front\FrontController@getPage')->name('getPage');
+Route::get('/404', 'Front\FrontController@errorPage')->name('errorPage');
 
 Auth::routes();
 
@@ -217,3 +216,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'admin'],function (){
 
 
 });
+
+//page category
+Route::get('/{slug}', 'Front\FrontController@allCategory')->name('allCategory');
+Route::get('/{slug}/{slugsub}', 'Front\FrontController@allCategory')->name('allCategory');
+Route::get('/{slug}/{slugsub}/{slugsub2}', 'Front\FrontController@allCategory')->name('allCategory');
